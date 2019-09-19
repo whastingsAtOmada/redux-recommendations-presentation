@@ -33,7 +33,7 @@ export const DarkSlide = ({ children, ...rest }) => (
 // CODE LAYOUT
 
 export const CodeSlide = ({ children, ...rest }) => (
-  <Slide bgColor="#1d1f21" {...rest}>
+  <Slide bgColor="#2a2734" {...rest}>
     <MDXProvider components={components}>{children}</MDXProvider>
   </Slide>
 );
