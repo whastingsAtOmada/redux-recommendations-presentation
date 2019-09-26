@@ -6,8 +6,7 @@ import { createAction } from 'redux-starter-kit'
 const openModal = createAction('myApp/OPEN_MODAL')
 
 // Type stored on action creator's `type` property
-console.log(openModal.type) // myApp/OPEN_MODAL
+console.log('Action type: ', openModal.type)
 // Argument passed becomes payload
 const action = openModal('contactForm')
-console.log(action)
-// { type: 'myApp/OPEN_MODAL', payload: 'contactForm' }
+console.log('Action object: ', action)

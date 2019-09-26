@@ -1,7 +1,7 @@
-import './examples/createAction'
 import { CodePane } from 'spectacle'
 import { CodeSlide } from './slides'
 import ReduxLogo from './components/ReduxLogo'
+import CodeRunner from './components/CodeRunner'
 
 <ReduxLogo />
 
@@ -44,3 +44,4 @@ export default CodeSlide
   source={require('!raw-loader!./examples/createAction.js')}
   overflow="overflow"
 />
+<CodeRunner name="createAction" importer={() => import('./examples/createAction')} />
