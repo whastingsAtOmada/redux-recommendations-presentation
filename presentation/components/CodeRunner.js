@@ -11,6 +11,14 @@ class CodeRunner extends React.Component {
     }
   }
 
+  componentDidMount() {
+    window.addEventListener('keydown', this.handlePlayKey)
+  }
+
+  componentWillUnmount() {
+    window.removeEventListener('keydown', this.handlePlayKey)
+  }
+
   addOutput = (...args) => {
     this.setState((state) => {
       return {
@@ -20,6 +28,12 @@ class CodeRunner extends React.Component {
         }, state.output) + '\n'
       }
     })
+  }
+
+  handlePlayKey = (event) => {
+    if (event.key === 'p') {
+      this.runCode()
+    }
   }
 
   runCode = () => {

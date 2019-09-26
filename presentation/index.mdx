@@ -1,4 +1,4 @@
-import { CodePane } from 'spectacle'
+import { CodePane, Notes } from 'spectacle'
 import { CodeSlide } from './slides'
 import ReduxLogo from './components/ReduxLogo'
 import CodeRunner from './components/CodeRunner'
@@ -14,9 +14,7 @@ export const transition = ['zoom']
 
 - Reduce Boilerplate with Utilities
 - Simplify API Calls with Middleware
-- Centralize State Access with Selectors
 - Improve Code Structure with Ducks
-- Standardize Data Storage
 
 ---
 
@@ -36,6 +34,14 @@ export default CodeSlide
   overflow="overflow"
 />
 
+<Notes>
+
+- Vanilla Redux
+- Separate action type constant and creator function
+- Grows big when you have a lot of actions
+
+</Notes>
+
 ---
 export default CodeSlide
 
@@ -45,3 +51,97 @@ export default CodeSlide
   overflow="overflow"
 />
 <CodeRunner name="createAction" importer={() => import('./examples/createAction')} />
+
+<Notes>
+
+- Example from redux-starter-kit library
+- From the Redux core team
+- Provides `createAction` utility
+- Check out the output
+
+</Notes>
+
+---
+
+##### Reduce Boilerplate with Utilities
+### Reducers
+
+- Prefer utilities to `switch`
+- Code in `case` sections isn't really isolated
+- You have to watch for the dreaded forgotten `break`
+
+---
+export default CodeSlide
+
+<CodePane
+  lang="js"
+  source={require('!raw-loader!./examples/switchReducer.js')}
+  overflow="overflow"
+/>
+
+<Notes>
+
+- Basic `switch` reducer example
+- Each action type gets a `case`
+- Don't forget to `break`, or next `case` will start
+- Cases may share variables and so aren't isolated
+
+</Notes>
+
+---
+export default CodeSlide
+
+<CodePane
+  lang="js"
+  source={require('!raw-loader!./examples/utilReducer.js')}
+  overflow="overflow"
+/>
+
+<Notes>
+
+- Example of creating reducer w/ utility
+- Provide map of action type to function for just that action type
+- Returns a reducer function
+- When run, forwards action to correct function based on its type
+- Code for handling each type of action is isolated
+
+</Notes>
+
+---
+export default CodeSlide
+
+<CodePane
+  lang="js"
+  source={require('!raw-loader!./examples/createReducer.js')}
+  overflow="overflow"
+/>
+
+<Notes>
+
+- Implementing is straightforward
+- Function that takes reducer map
+- Returns reducer function
+- Reducer function looks up appropriate function in map and executes
+- If no matching function, just return state as-is
+
+</Notes>
+
+---
+export default CodeSlide
+
+<CodePane
+  lang="js"
+  source={require('!raw-loader!./examples/rskReducer.js')}
+  overflow="overflow"
+/>
+<CodeRunner name="rskReducer" importer={() => import('./examples/rskReducer')} />
+
+<Notes>
+
+- redux-starter-kit provides its own `createReducer`
+- Similarly to last example, takes a map
+- Action creators can be used in map, as their `type` property will automatically become the key
+- Uses Immer.js to create a draft copy of your state that you can mutate
+- But resulting returned state is updated immutably
+
+</Notes>
