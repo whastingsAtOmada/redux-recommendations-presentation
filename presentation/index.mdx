@@ -1,5 +1,6 @@
-import { CodePane, Notes } from 'spectacle'
+import { Notes } from 'spectacle'
 import { CodeSlide } from './slides'
+import CodePane from './components/CodePane'
 import ReduxLogo from './components/ReduxLogo'
 import CodeRunner from './components/CodeRunner'
 
@@ -29,9 +30,7 @@ export const transition = ['zoom']
 export default CodeSlide
 
 <CodePane
-  lang="js"
   source={require('!raw-loader!./examples/withoutCreateAction.js')}
-  overflow="overflow"
 />
 
 <Notes>
@@ -46,9 +45,7 @@ export default CodeSlide
 export default CodeSlide
 
 <CodePane
-  lang="js"
   source={require('!raw-loader!./examples/createAction.js')}
-  overflow="overflow"
 />
 <CodeRunner name="createAction" importer={() => import('./examples/createAction')} />
 
@@ -74,9 +71,7 @@ export default CodeSlide
 export default CodeSlide
 
 <CodePane
-  lang="js"
   source={require('!raw-loader!./examples/switchReducer.js')}
-  overflow="overflow"
 />
 
 <Notes>
@@ -92,9 +87,7 @@ export default CodeSlide
 export default CodeSlide
 
 <CodePane
-  lang="js"
   source={require('!raw-loader!./examples/utilReducer.js')}
-  overflow="overflow"
 />
 
 <Notes>
@@ -111,9 +104,7 @@ export default CodeSlide
 export default CodeSlide
 
 <CodePane
-  lang="js"
   source={require('!raw-loader!./examples/createReducer.js')}
-  overflow="overflow"
 />
 
 <Notes>
@@ -130,9 +121,7 @@ export default CodeSlide
 export default CodeSlide
 
 <CodePane
-  lang="js"
   source={require('!raw-loader!./examples/rskReducer.js')}
-  overflow="overflow"
 />
 <CodeRunner name="rskReducer" importer={() => import('./examples/rskReducer')} />
 
@@ -143,5 +132,78 @@ export default CodeSlide
 - Action creators can be used in map, as their `type` property will automatically become the key
 - Uses Immer.js to create a draft copy of your state that you can mutate
 - But resulting returned state is updated immutably
+
+</Notes>
+
+---
+
+##### Simplify API Calls with Middleware
+
+- Manual API calls lead to boilerplate
+- Loading and error states handled inconsistently or not at all
+- Manual code requires more work to test
+
+---
+export default CodeSlide
+
+<CodePane
+  source={require('!raw-loader!./examples/manualApiCall.js')}
+/>
+
+<Notes>
+
+- Have to dispatch all three action types every time
+- Can't use `catch` or you'll get errors from reducer and React code
+- Have to write about the same tests every time
+  - Including mocking with dummy promises
+
+</Notes>
+
+---
+export default CodeSlide
+
+<CodePane
+  source={require('!raw-loader!./examples/declarativeApiCall.js')}
+/>
+<CodeRunner name="declarativeApiCall" importer={() => import('./examples/declarativeApiCall')} />
+
+<Notes>
+
+- Have something else send api request and dispatch actions for you
+- Run example: You get request start and success actions automatically
+- Can unit test by just asserting on contents of action object
+
+</Notes>
+
+---
+export default CodeSlide
+
+<CodePane
+  source={require('!raw-loader!./examples/apiCallMiddleware.js')}
+/>
+
+<Notes>
+
+- Redux middleware are great for this
+- Is a function that intercepts dispatched actions
+- Here:
+  - Intercepts API call actions
+  - Makes API call
+  - Dispatches start and success or failure actions
+
+</Notes>
+
+---
+
+##### Simplify API Calls with Middleware
+### Libraries
+
+- [redux-api-middleware](https://github.com/agraboso/redux-api-middleware)
+- [redux-api](https://github.com/lexich/redux-api)
+
+<Notes>
+
+- If you don't want to roll your own, there are libraries
+- redux-api-middleware seems pretty solid
 
 </Notes>

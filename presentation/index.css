@@ -1,3 +1,10 @@
-.react-live-dark pre.prism-code {
-  background: black !important;
+
+div.custom-code-pane {
+  display: flex;
+  justify-content: center;
+}
+
+a,
+a:visited {
+  color: #03a9f4;
 }

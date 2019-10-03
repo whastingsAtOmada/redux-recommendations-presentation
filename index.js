@@ -7,6 +7,8 @@ import { Deck, Slide } from 'spectacle';
 import components from './presentation/components';
 import slides, { transitions } from "./presentation/index.mdx";
 import theme from './presentation/theme';
+import './node_modules/prismjs/themes/prism-tomorrow.css'
+import './presentation/index.css'
 
 require("normalize.css");
 
@@ -27,7 +29,7 @@ const creeperTransition = (transitioning, forward) => {
 
 ReactDOM.render(
   <AppContainer errorReporter={CustomErrorReporter}>
-    <Deck transition={[creeperTransition]} transitionDuration={500} theme={theme}>
+    <Deck transition={[creeperTransition]} transitionDuration={500} theme={theme} contentWidth={1200} contentHeight={1200}>
       {slides.map((S, i) => {
         let transition = transitions[i] || null;
         return <S transition={transition} key={`slide-${i}`} />;
