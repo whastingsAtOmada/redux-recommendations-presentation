@@ -12,14 +12,18 @@ const apiCallMiddleware = store => next => action => {
     return next(action)
   }
   const { actions, body, method, url } = action.payload
-  const [startAction, successAction, failureAction] = actions
+  const [
+    startAction, successAction, failureAction
+  ] = actions
   next({ type: startAction })
   apiRequests[method](url, body).then(
     (response) => next({
-      type: successAction, payload: { data: response.data }
+      type: successAction,
+      payload: { data: response.data },
     }),
     (error) => next({
-      type: failureAction, payload: { message: error.message },
+      type: failureAction,
+      payload: { message: error.message },
     }),
   )
 }

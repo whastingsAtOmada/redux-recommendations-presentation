@@ -18,18 +18,9 @@ CustomErrorReporter.propTypes = {
   error: PropTypes.instanceOf(Error).isRequired
 };
 
-const creeperTransition = (transitioning, forward) => {
-  const offset = forward ? 100 : -100;
-  return {
-    transform: `
-      translate3d(0,${transitioning ? offset : 0}%, 0)
-    `,
-  };
-};
-
 ReactDOM.render(
   <AppContainer errorReporter={CustomErrorReporter}>
-    <Deck transition={[creeperTransition]} transitionDuration={500} theme={theme} contentWidth={1200} contentHeight={1200}>
+    <Deck transition={[]} transitionDuration={0} theme={theme} contentWidth={1200} contentHeight={1200}>
       {slides.map((S, i) => {
         let transition = transitions[i] || null;
         return <S transition={transition} key={`slide-${i}`} />;
@@ -45,7 +36,7 @@ if (module.hot) {
     const newSlides = require("./presentation/index.mdx").default;
     ReactDOM.render(
       <AppContainer errorReporter={CustomErrorReporter}>
-        <Deck transition={[creeperTransition]} transitionDuration={500} theme={newTheme}>
+        <Deck transition={[]} transitionDuration={0} theme={theme} contentWidth={1200} contentHeight={1200}>
           {newSlides.map((S, i) => {
             let transition = transitions[i] || null;
             return <S transition={transition} key={`slide-${i}`} />;

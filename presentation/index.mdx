@@ -3,13 +3,13 @@ import { CodeSlide } from './slides'
 import CodePane from './components/CodePane'
 import ReduxLogo from './components/ReduxLogo'
 import CodeRunner from './components/CodeRunner'
+import ApiMiddlewareWalkthrough from './walkthroughs/ApiMiddlewareWalkthrough'
 
 <ReduxLogo />
 
 # Redux Recommendations
 
 ---
-export const transition = ['zoom']
 
 # Overview
 
@@ -176,22 +176,10 @@ export default CodeSlide
 </Notes>
 
 ---
-export default CodeSlide
-
-<CodePane
-  source={require('!raw-loader!./examples/apiCallMiddleware.js')}
-/>
-
-<Notes>
+export default ApiMiddlewareWalkthrough
 
 - Redux middleware are great for this
 - Is a function that intercepts dispatched actions
-- Here:
-  - Intercepts API call actions
-  - Makes API call
-  - Dispatches start and success or failure actions
-
-</Notes>
 
 ---
 
