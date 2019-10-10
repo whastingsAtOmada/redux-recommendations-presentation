@@ -203,3 +203,62 @@ export default ApiMiddlewareWalkthrough
 - redux-api-middleware seems pretty solid
 
 </Notes>
+
+---
+
+# Improve Code Structure with Ducks
+
+---
+
+##### Improve Code Structure with Ducks
+
+- [ducks-modular-redux](https://github.com/erikras/ducks-modular-redux) describes the "Ducks" pattern
+- You put action types, actions creators, and reducer in same file (a "Duck")
+- Keeps you from jumping around so much
+- Follows "code that changes together should live together" principle
+
+<Notes>
+
+- Traditionally, actions and reducers defined in different files
+- "Duck" is a pattern proposed by Erik Rasmussen
+- It's a file containing action types, action creators, and the reducer for some functionality
+- Let's you edit related code in the same file
+- So less jumping between files
+
+</Notes>
+
+---
+export default CodeSlide
+
+<CodePane
+  source={require('!raw-loader!./examples/duck.js')}
+/>
+
+<Notes>
+
+- Define types, creators, and reducer
+- Personally, I'd use `createAction` from redux-starter-kit
+- Export action creators as named exports
+- Export reducer as the default export
+- Can also export action type if you need to use them elsewhere
+
+</Notes>
+
+---
+export default CodeSlide
+
+<CodePane
+  source={require('!raw-loader!./examples/rskDuck.js')}
+/>
+<CodeRunner name="rskDuck" importer={() => import('./examples/rskDuck')} />
+
+<Notes>
+
+- redux-starter-kit provides `createSlice` utility
+- Let's you put everyone in one file, but with even less boilerplate
+- `reducers` hash produces both reducer you'd get with `createReducer` and supporting action creators + types
+- Gives you object with `reducer` and `actions` props
+- Run code:
+  - Note action type prefixed with slice name
+
+</Notes>
