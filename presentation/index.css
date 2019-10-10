@@ -1,4 +1,3 @@
-
 div.custom-code-pane {
   display: flex;
   justify-content: center;
@@ -7,4 +6,14 @@ div.custom-code-pane {
 a,
 a:visited {
   color: #03a9f4;
+}
+
+.spectacle-presenter-main {
+  height: 100% !important;
+  overflow: auto;
+}
+
+.spectacle-presenter-main .spectacle-slide {
+  height: fit-content;
+  min-height: 100%;
 }

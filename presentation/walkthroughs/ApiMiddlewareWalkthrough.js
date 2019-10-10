@@ -3,7 +3,7 @@ import CodeSlide from 'spectacle-code-slide'
 
 const NoteWrapper = ({ children }) => {
   return (
-    <div style={{ marginTop: '100px' }}>
+    <div style={{ marginTop: '150px' }}>
       {children}
     </div>
   )
