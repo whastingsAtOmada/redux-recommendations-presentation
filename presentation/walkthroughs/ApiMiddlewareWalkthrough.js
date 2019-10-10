@@ -29,7 +29,7 @@ const ApiMiddlewareWalkthrough = ({ children, ...otherProps }) => {
       lang="javascript"
       code={require('!raw-loader!../examples/apiCallMiddleware.js')}
       ranges={makeRanges([
-        { loc: [0, 0], title: 'Middleware Example' },
+        { loc: [0, 0], title: 'Middleware Example', note: 'Use up and down arrow keys to navigate' },
         { loc: [3, 8], title: 'Actions', notes: 'Action type to intercept + utility for creating request action types' },
         { loc: [9, 10], title: 'Middleware Signature', notes: 'Funky chain of functions' },
         { loc: [10, 13], title: 'Type Check', notes: 'If not API call, pass to next middleware or reducer' },
