@@ -27,6 +27,7 @@ a:visited {
 
 .spectacle-content ul {
   list-style-position: outside;
+  margin-top: 70px;
 }
 
 .spectacle-content li {
