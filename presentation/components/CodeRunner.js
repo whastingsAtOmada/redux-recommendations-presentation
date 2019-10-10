@@ -55,7 +55,7 @@ class CodeRunner extends React.Component {
   render() {
     return (
       <div>
-        <button onClick={this.runCode}>▶</button>
+        <button onClick={this.runCode} className="code-runner-button">▶</button>
         {this.state.output && (
           <CodePane
             lang="js"

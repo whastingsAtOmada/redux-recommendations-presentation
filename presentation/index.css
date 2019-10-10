@@ -17,3 +17,10 @@ a:visited {
   height: fit-content;
   min-height: 100%;
 }
+
+.code-runner-button {
+  background-color: transparent;
+  border-color: transparent;
+  color: lawngreen;
+  margin: 10px 0;
+}
