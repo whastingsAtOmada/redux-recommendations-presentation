@@ -58,7 +58,9 @@ export default CodeSlide
 - Example from redux-starter-kit library
 - From the Redux core team
 - Provides `createAction` utility
-- Check out the output
+- Run code
+  - `actionCreator.type` has the action type
+  - Returned action object has argument passed to creator as payload
 
 </Notes>
 
@@ -136,6 +138,8 @@ export default CodeSlide
 - Action creators can be used in map, as their `type` property will automatically become the key
 - Uses Immer.js to create a draft copy of your state that you can mutate
 - But resulting returned state is updated immutably
+- Run code:
+  - Proves state was updated immutably
 
 </Notes>
 
@@ -178,7 +182,8 @@ export default CodeSlide
 <Notes>
 
 - Have something else send api request and dispatch actions for you
-- Run example: You get request start and success actions automatically
+- Run code:
+  - You get request start and success actions automatically
 - Can unit test by just asserting on contents of action object
 
 </Notes>
