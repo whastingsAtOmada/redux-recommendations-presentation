@@ -24,3 +24,11 @@ a:visited {
   color: lawngreen;
   margin: 10px 0;
 }
+
+.spectacle-content ul {
+  list-style-position: outside;
+}
+
+.spectacle-content li {
+  margin-bottom: 15px;
+}
