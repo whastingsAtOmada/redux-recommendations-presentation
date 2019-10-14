@@ -25,6 +25,18 @@ a:visited {
   margin: 10px 0;
 }
 
+.code-runner-open .custom-code-pane {
+  opacity: 0.5;
+}
+
+.code-runner .prism-code {
+  position: absolute;
+  left: 50%;
+  top: 50%;
+  transform: translate(-50%, -50%);
+  width: 1000px;
+}
+
 .spectacle-content ul {
   list-style-position: outside;
   margin-top: 70px;
