@@ -10,6 +10,12 @@ import ApiMiddlewareWalkthrough from './walkthroughs/ApiMiddlewareWalkthrough'
 # Redux Recommendations
 #### Will Hastings &ndash; 10/15/19
 
+<Notes>
+
+- What is Redux?
+
+</Notes>
+
 ---
 
 # Overview
@@ -30,6 +36,12 @@ import ApiMiddlewareWalkthrough from './walkthroughs/ApiMiddlewareWalkthrough'
 - Writing simple action creators by hand is tedious
 - Defining separate action type constants and action creator functions is a lot
 - With a utility, can be one line for many action creators
+
+<Notes>
+
+- What is an action creator?
+
+</Notes>
 
 ---
 export default CodeSlide
@@ -60,8 +72,8 @@ export default CodeSlide
 - From the Redux core team
 - Provides `createAction` utility
 - Run code
-  - `actionCreator.type` has the action type
-  - Returned action object has argument passed to creator as payload
+  - `actionCreator.type`
+  - Returned action object
 
 </Notes>
 
@@ -74,6 +86,12 @@ export default CodeSlide
 - Code in `case` sections isn't really isolated
 - You have to watch for the dreaded forgotten `break`
 
+<Notes>
+
+- What is a reducer?
+
+</Notes>
+
 ---
 export default CodeSlide
 
@@ -85,8 +103,8 @@ export default CodeSlide
 
 - Basic `switch` reducer example
 - Each action type gets a `case`
-- Don't forget to `break`, or next `case` will start
-- Cases may share variables and so aren't isolated
+- Don't forget to `break`
+- `case`s not isolated
 
 </Notes>
 
@@ -99,11 +117,12 @@ export default CodeSlide
 
 <Notes>
 
-- Example of creating reducer w/ utility
-- Provide map of action type to function for just that action type
-- Returns a reducer function
-- When run, forwards action to correct function based on its type
-- Code for handling each type of action is isolated
+- Utility example
+- Map argument
+- Returns reducer
+- Forwards action to correct function
+- No `switch` boilerplate (e.g. `break`)
+- Code isolated
 
 </Notes>
 
@@ -119,8 +138,8 @@ export default CodeSlide
 - Implementing is straightforward
 - Function that takes reducer map
 - Returns reducer function
-- Reducer function looks up appropriate function in map and executes
-- If no matching function, just return state as-is
+- Looks up and execute
+- Or returns same state
 
 </Notes>
 
@@ -134,11 +153,11 @@ export default CodeSlide
 
 <Notes>
 
-- redux-starter-kit provides its own `createReducer`
-- Similarly to last example, takes a map
-- Action creators can be used in map, as their `type` property will automatically become the key
-- Uses Immer.js to create a draft copy of your state that you can mutate
-- But resulting returned state is updated immutably
+- redux-starter-kit util
+- Also takes map
+- Action creators can be keys
+- Uses Immer.js
+- Update still immutable
 - Run code:
   - Proves state was updated immutably
 
@@ -147,6 +166,12 @@ export default CodeSlide
 ---
 
 # Simplify API Calls with Middleware
+
+<Notes>
+
+- What is a middleware?
+
+</Notes>
 
 ---
 
@@ -157,6 +182,14 @@ export default CodeSlide
 - Loading and error states handled inconsistently or not at all
 - Manual code requires more work to test
 
+<Notes>
+
+- Boilerplate
+- Inconsistent handling
+- Testing is more work
+
+</Notes>
+
 ---
 export default CodeSlide
 
@@ -166,13 +199,13 @@ export default CodeSlide
 
 <Notes>
 
-- Example here using redux-thunk library
-  - Is a middleware, but not API-call specific
-  - Gives you access to store's `dispatch`
-- Have to dispatch all three action types every time
-- Can't use `catch` or you'll get errors from reducer and React code
-- Have to write about the same tests every time
-  - Including mocking with dummy promises
+- redux-thunk example
+  - Is a middleware too
+  - Provides `dispatch`
+- Three actions to `dispatch`
+- Tests mostly same every time
+  - More mocking
+- Can't use `catch`
 
 </Notes>
 
@@ -186,18 +219,25 @@ export default CodeSlide
 
 <Notes>
 
-- Have something else send api request and dispatch actions for you
+- Example w/ API call middleware
+- Utility for action types
+- Action creator returns plain action
+  - `CALL_API` type
+  - Actions to fire
+  - Request details
 - Run code:
-  - You get request start and success actions automatically
-- Can unit test by just asserting on contents of action object
+  - Middleware fires start and success
+- Unit test action contents
 
 </Notes>
 
 ---
 export default ApiMiddlewareWalkthrough
 
-- Redux middleware are great for this
-- Is a function that intercepts dispatched actions
+- Important to understand your abstractions
+  - How they work
+  - When to use them
+- Walkthrough middleware
 
 ---
 
@@ -209,8 +249,9 @@ export default ApiMiddlewareWalkthrough
 
 <Notes>
 
-- If you don't want to roll your own, there are libraries
+- Can use library
 - redux-api-middleware seems pretty solid
+- But remember to understand your abstractions
 
 </Notes>
 
@@ -224,17 +265,20 @@ export default ApiMiddlewareWalkthrough
 ### What's a Duck?
 
 - [ducks-modular-redux](https://github.com/erikras/ducks-modular-redux) describes the "Ducks" pattern
-- You put action types, actions creators, and reducer in same file (a "Duck")
+- Put a feature's action types, actions creators, and reducer in same file (a "Duck")
 - Keeps you from jumping around so much
 - Follows "code that changes together should live together" principle
 
 <Notes>
 
-- Traditionally, actions and reducers defined in different files
-- "Duck" is a pattern proposed by Erik Rasmussen
-- It's a file containing action types, action creators, and the reducer for some functionality
-- Let's you edit related code in the same file
-- So less jumping between files
+- Traditionally, separate action and reducer files
+  - Sometimes separate directories
+- "Duck" is a pattern
+- Proposed by Erik Rasmussen
+- All in same file
+  - For given functionalty
+  - Not everything in one file
+- Less jumping
 
 </Notes>
 
@@ -248,10 +292,9 @@ export default CodeSlide
 <Notes>
 
 - Define types, creators, and reducer
-- Personally, I'd use `createAction` from redux-starter-kit
-- Export action creators as named exports
-- Export reducer as the default export
-- Can also export action type if you need to use them elsewhere
+- Recommend `createAction`
+- Action creators as named exports
+- Reducer as default export
 
 </Notes>
 
@@ -265,12 +308,15 @@ export default CodeSlide
 
 <Notes>
 
-- redux-starter-kit provides `createSlice` utility
-- Let's you put everyone in one file, but with even less boilerplate
-- `reducers` hash produces both reducer you'd get with `createReducer` and supporting action creators + types
-- Gives you object with `reducer` and `actions` props
+- `createSlice` from rsk
+- Even less boilerplate
+- Creates everything from reducers map
+- Return object with `.reducer` and `.actions`
+- May be taking too far...
 - Run code:
-  - Note action type prefixed with slice name
+  - Reducer prop
+  - Action creators map
+  - Example action creator call
 
 </Notes>
 
@@ -283,9 +329,22 @@ export default CodeSlide
 ##### Conclusion
 ### Summary
 
-- Use utilities to reduce boilerplate
+- Use utilities to reduce boilerplate and increase maintainabilty
 - Build abstractions like middleware to simplify common patterns
 - Keep related code close together
+
+<Notes>
+
+- Utilities
+  - Less boilerplate
+  - More maintainable
+  - Faster velocity
+- Abstractions simplify patterns
+  - e.g. API calls
+  - BUT UNDERSTAND THEM
+- Easier to change related code if it lives together
+
+</Notes>
 
 ---
 

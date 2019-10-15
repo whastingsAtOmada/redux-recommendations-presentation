@@ -8,6 +8,7 @@ export const MY_REQUEST_ERROR = 'MY_REQUEST_ERROR'
 const actions = {
   makeMyRequest() {
     // Return thunk function for redux-thunk to call
+    // Use dispatch to fire actions
     return (dispatch) => {
       dispatch({ type: MY_REQUEST_START })
       return apiRequests.get('/some/url').then(

@@ -18,6 +18,7 @@ class CodeRunner extends React.Component {
 
   componentWillUnmount() {
     window.removeEventListener('keydown', this.handlePlayKey)
+    document.body.classList.remove('code-runner-open')
   }
 
   addOutput = (...args) => {

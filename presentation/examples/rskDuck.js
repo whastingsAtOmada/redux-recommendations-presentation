@@ -1,11 +1,12 @@
 /** EXAMPLE: Duck-like pattern with redux-starter-kit */
 import { createSlice } from 'redux-starter-kit'
 
+// Returns object with .reducer and .actions props
 const userSlice = createSlice({
   slice: 'user',
   initialState: { name: '', age: 0 },
   reducers: {
-    // Defines both reducer cases and action creators
+    // Automatically creates action creators from reducer map keys
     setUserAge: (state, action) => {
       state.age = action.payload
     },
